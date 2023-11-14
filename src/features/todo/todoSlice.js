@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-
+import {v4 as uuid} from "uuid";
 const initialState = {
   tasks: [],
   listTask:[]
@@ -10,12 +10,11 @@ const todoSlice = createSlice({
   initialState,
   reducers: {
     addTodo: (state, action) => {
-      state.tasks.push({ id: Date.now(), text: action.payload });
+      state.tasks.push({ id: uuid(), text: action.payload });
       state.listTask=state.tasks;
     },
     deleteTodo: (state, action) => {
       state.tasks = state.tasks.filter((task) => task.id !== action.payload);
-      
     },
     filterTodo: (state,action)=>{
         if(action.payload.length === 0){
@@ -25,16 +24,11 @@ const todoSlice = createSlice({
         }
     },
     searchTodo: (state,action) =>{
-        if(!action.payload){
-            state.listTask=state.tasks;
-        }else{
-            console.log( action.payload);
-            state.listTask= state.tasks.filter((task) => task.text.taskData === action.payload)
-        }
+            state.listTask= state.tasks.filter((task) => task.text.taskData.includes( action.payload))
     }
   },
 });
-
+export const getAllTask =(state) => state.todo.listTask;
 export const { addTodo, deleteTodo,filterTodo,searchTodo } = todoSlice.actions;
 
 export default todoSlice.reducer;

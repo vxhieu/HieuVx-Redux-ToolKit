@@ -1,0 +1,1 @@
+ export const checkAuthSelector= (state) => state.user.authenticated;

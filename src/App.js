@@ -1,4 +1,4 @@
-import { Typography, Divider } from 'antd';
+import { Typography, Divider,QRCode,Space } from 'antd';
 import './App.css';
 import TodoList from './components/TodoList';
 import Filters from './components/Filters';
@@ -21,6 +21,9 @@ function App() {
       }}
     >
       <Title style={{ textAlign: 'center' }}>TODO APP with REDUX</Title>
+      <Space direction="vertical" align="center" >
+    <QRCode type="canvas" value="https://github.com/vxhieu/NextJs" />
+  </Space>
       <Filters />
       <Divider />
       <TodoList />
