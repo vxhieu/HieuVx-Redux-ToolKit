@@ -10,7 +10,7 @@ const loginSlice = createSlice({
         state.status = "loading";
       })
       .addCase(fetchUser.fulfilled, (state, action) => {
-        state.user =action.payload;
+        state.user = action.payload;
         state.status = "idle";
       });
   },

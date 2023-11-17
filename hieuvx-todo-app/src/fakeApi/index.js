@@ -14,9 +14,10 @@ export const setupServer = () => {
       });
       this.post("/api/authLogin", (schema,request) => {
         const dataParse =  JSON.parse(request.requestBody);
-        const userName = dataParse.username;
-        const userPassWord = dataParse.password;
+        const userName = dataParse.userName;
+        const userPassWord = dataParse.userPassWord;
         const user = schema.users.findBy({ name: userName, password: userPassWord });
+        console.log({userName,userPassWord});
         if (user) {
           user.update({ login: true });
           return { authenticated: true, user: user.attrs };
